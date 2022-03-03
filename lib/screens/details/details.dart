@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:covid_details/models/countries_response.dart';
 import 'package:covid_details/screens/details/details_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -151,6 +152,7 @@ class _CarouselSliderState extends State<CarouselSlider> {
                       child: Transform.rotate(
                           angle: math.pi * value,
                           child: CountryCard(
+                              pageController: _pageController!,
                               controller: widget.controller,
                               countryCode: widget.countryCodes[index])),
                     );
@@ -164,8 +166,12 @@ class _CarouselSliderState extends State<CarouselSlider> {
 class CountryCard extends StatefulWidget {
   final String countryCode;
   final DetailsController controller;
+  final PageController pageController;
   const CountryCard(
-      {Key? key, required this.countryCode, required this.controller})
+      {Key? key,
+      required this.countryCode,
+      required this.controller,
+      required this.pageController})
       : super(key: key);
 
   @override
@@ -204,105 +210,176 @@ class _CountryCardState extends State<CountryCard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
-                          'Active',
-                          style: TextStyle(
-                              fontFamily: GoogleFonts.actor().fontFamily,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
+                        Row(
+                          children: [
+                            Text(
+                              'Active',
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.actor().fontFamily,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                            ),
+                            const SizedBox(width: 5.0),
+                            const FaIcon(FontAwesomeIcons.adjust)
+                          ],
                         ),
-                        Text(widget.controller.covidResponse.active.toString(),
-                            style: TextStyle(
-                                fontFamily: GoogleFonts.roboto().fontFamily,
-                                fontSize: 18.0)),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder()),
+                          child: Text(
+                              widget.controller.covidResponse.active.toString(),
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.roboto().fontFamily,
+                                  fontSize: 16.0)),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 5.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
-                          'Cases',
-                          style: TextStyle(
-                              fontFamily: GoogleFonts.actor().fontFamily,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
+                        Row(
+                          children: [
+                            Text(
+                              'Cases',
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.actor().fontFamily,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                            ),
+                            const SizedBox(width: 5.0),
+                            const FaIcon(FontAwesomeIcons.peopleArrows)
+                          ],
                         ),
-                        Text(widget.controller.covidResponse.cases.toString(),
-                            style: TextStyle(
-                                fontFamily: GoogleFonts.roboto().fontFamily,
-                                fontSize: 18.0)),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder()),
+                          child: Text(
+                              widget.controller.covidResponse.cases.toString(),
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.roboto().fontFamily,
+                                  fontSize: 16.0)),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 5.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
-                          'Deaths',
-                          style: TextStyle(
-                              fontFamily: GoogleFonts.actor().fontFamily,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
+                        Row(
+                          children: [
+                            Text(
+                              'Deaths',
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.actor().fontFamily,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                            ),
+                            const SizedBox(width: 5.0),
+                            const FaIcon(FontAwesomeIcons.hospital)
+                          ],
                         ),
-                        Text(widget.controller.covidResponse.deaths.toString(),
-                            style: TextStyle(
-                                fontFamily: GoogleFonts.roboto().fontFamily,
-                                fontSize: 18.0)),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder()),
+                          child: Text(
+                              widget.controller.covidResponse.deaths.toString(),
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.roboto().fontFamily,
+                                  fontSize: 16.0)),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 5.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
-                          'Critical',
-                          style: TextStyle(
-                              fontFamily: GoogleFonts.actor().fontFamily,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
+                        Row(
+                          children: [
+                            Text(
+                              'Critical',
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.actor().fontFamily,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                            ),
+                            const SizedBox(width: 5.0),
+                            const FaIcon(FontAwesomeIcons.prescription)
+                          ],
                         ),
-                        Text(
-                            widget.controller.covidResponse.critical.toString(),
-                            style: TextStyle(
-                                fontFamily: GoogleFonts.roboto().fontFamily,
-                                fontSize: 18.0)),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder()),
+                          child: Text(
+                              widget.controller.covidResponse.critical
+                                  .toString(),
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.roboto().fontFamily,
+                                  fontSize: 16.0)),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 5.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
-                          'Tests',
-                          style: TextStyle(
-                              fontFamily: GoogleFonts.actor().fontFamily,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
+                        Row(
+                          children: [
+                            Text(
+                              'Tests',
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.actor().fontFamily,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                            ),
+                            const SizedBox(width: 5.0),
+                            const FaIcon(FontAwesomeIcons.medkit)
+                          ],
                         ),
-                        Text(widget.controller.covidResponse.tests.toString(),
-                            style: TextStyle(
-                                fontFamily: GoogleFonts.roboto().fontFamily,
-                                fontSize: 18.0)),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder()),
+                          child: Text(
+                              widget.controller.covidResponse.tests.toString(),
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.roboto().fontFamily,
+                                  fontSize: 16.0)),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 5.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
-                          'Recovered',
-                          style: TextStyle(
-                              fontFamily: GoogleFonts.actor().fontFamily,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
+                        Row(
+                          children: [
+                            Text(
+                              'Recovered',
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.actor().fontFamily,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0),
+                            ),
+                            const SizedBox(width: 5.0),
+                            const FaIcon(FontAwesomeIcons.recycle)
+                          ],
                         ),
-                        Text(
-                            widget.controller.covidResponse.recovered
-                                .toString(),
-                            style: TextStyle(
-                                fontFamily: GoogleFonts.roboto().fontFamily,
-                                fontSize: 18.0)),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder()),
+                          child: Text(
+                              widget.controller.covidResponse.recovered
+                                  .toString(),
+                              style: TextStyle(
+                                  fontFamily: GoogleFonts.roboto().fontFamily,
+                                  fontSize: 16.0)),
+                        ),
                       ],
                     ),
                   ],
